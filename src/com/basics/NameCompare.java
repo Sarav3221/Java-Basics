@@ -9,3 +9,7 @@ class NameCompare implements Comparator<Movie> {
         return m1.getName().compareTo(m2.getName()); 
     }
 }
+
+
+
+
