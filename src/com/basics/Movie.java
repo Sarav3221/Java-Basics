@@ -17,7 +17,7 @@ class Movie implements Comparable<Movie> {
      this.rating = rating;
      this.year = year;
  }
-
+ 
  // Implementation of the compareTo method 
  // for default sorting by year
  public int compareTo(Movie m) {

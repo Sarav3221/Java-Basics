@@ -30,7 +30,7 @@ public class Java8Practise {
 		//	List a= ls1.stream().forEach(e->e.);
 		
 //1-5-2025
-		
+		//
 		//1. Return value >50 	
 		//List<Integer> fin=
 		// ls1.stream().filter(e->e>50).forEach(System.out::println);
@@ -142,6 +142,8 @@ public class Java8Practise {
 
 		/// 2. Find the highest-paid employee per department.
 	
+	//employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.maxBy(Employee::getSalary), ))
+	 
 	/*Map<String,Optional<Employee>> paiddep = employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))));
 	
 	paiddep.forEach((dep,emp)->{
@@ -160,7 +162,7 @@ skillList.forEach((skils)->{
 		System.out.println(skils);
 	});*/
 
-		// 4. Find the most common skill(s) among employees (by frequency).//1 hour to solve even after copy 	
+// 4. Find the most common skill(s) among employees (by frequency).//1 hour to solve even after copy 	
 
 	//You're very close, but the issue is that you're trying to call .collect(Collectors.toList()) inside the flatMap(...), which is incorrect. flatMap expects a Stream, not a List.
        /*List<String>  allskill=employees.stream().flatMap(e->e.getSkills().stream()).collect(Collectors.toList());
@@ -203,6 +205,9 @@ System.out.println(employees.stream().filter(sal-> sal.getSalary()>6000).map(Emp
 
 	}
 	
+
+
+	
 	/*// Wipro Interview 
 	//program to print Max/Min employee salary from the given collection
 			Optional<Employee> higestEmployee = employeeList.stream()
@@ -237,6 +242,8 @@ System.out.println(employees.stream().filter(sal-> sal.getSalary()>6000).map(Emp
 							Map<String, Long> empDeptCOunt = employeeList.stream()
 									.collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
 									empDeptCOunt.forEach((key,value)-> System.out.println(key + value));*/
+	
+	
 
 } 
 

@@ -44,6 +44,9 @@ public class BasicsPractise {
 		
 		
 		
+		
+		
+		
 		// Array[] a1= new Array[14,6,3]; wrong way of initilize array
 		
 		List<Integer> ls = new ArrayList<>();
