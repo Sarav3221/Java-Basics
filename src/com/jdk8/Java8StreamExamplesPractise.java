@@ -1,15 +1,10 @@
 package com.jdk8;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.function.Function;
 import java.util.stream.*;
 
-class Employee { private String name, department; private double salary; private List<String> skills;
-    public Employee(String n, String d, double s, List<String> sk){this.name=n;this.department=d;this.salary=s;this.skills=sk;}
-    public String getName(){return name;} public String getDepartment(){return department;} public double getSalary(){return salary;} public List<String> getSkills(){return skills;}
-    public String toString(){return name+"("+department+", "+salary+")";}
-}
-public class Java8StreamExamples {
+
+public class Java8StreamExamplesPractise {
     public static void main(String[] args){
         List<Employee> employees = Arrays.asList(
             new Employee("Alice","IT",7000,Arrays.asList("Java","Spring","Docker")),
@@ -86,9 +81,9 @@ public class Java8StreamExamples {
                         .limit(3).collect(Collectors.toList());
         System.out.println("11. Top 3 Paid Employees: " + top3Paid);
 
-        Map<String, Double> avgSalaryByDept1 =employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,
+        Map<String, Double> avgSalaryByDept =employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,
                         Collectors.averagingDouble(Employee::getSalary)));
-        System.out.println("12. Average Salary by Department1: " + avgSalaryByDept1);
+        System.out.println("12. Average Salary by Department: " + avgSalaryByDept);
 
         String deptWithHighestAvgSalary = avgSalaryByDept.entrySet().stream()
                         .max(Map.Entry.comparingByValue()).get().getKey();
@@ -106,10 +101,10 @@ public class Java8StreamExamples {
         Map<String, List<String>> employeeSkillMap = employees.stream().collect(Collectors.toMap(Employee::getName, Employee::getSkills));
         System.out.println("17. Employee → Skills Map: " + employeeSkillMap);
 
-        Map<String, Long> skillFrequency1 =employees.stream().flatMap(e -> e.getSkills().stream())
+        Map<String, Long> skillFrequency =employees.stream().flatMap(e -> e.getSkills().stream())
                         .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
 
-        long maxFreq1 = skillFrequency1.values().stream().max(Long::compare).get();
+        long maxFreq = skillFrequency.values().stream().max(Long::compare).get();
 
         List<String> mostCommonSkills =  skillFrequency.entrySet().stream()
                         .filter(e -> e.getValue() == maxFreq)
@@ -130,15 +125,9 @@ public class Java8StreamExamples {
         Double maxaverage=  employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.averagingDouble(Employee::getSalary))).entrySet().stream().max(Entry.comparingByValue()).get().getValue();
         System.out.println("max"+maxaverage); 
         
-        boolean allIT =      employees.stream().allMatch(e->e.getDepartment().equals("IT"));
-        System.out.println("allIT"+allIT);
-        
-        boolean anyKubernetes1 =  employees.stream().anyMatch(e->e.getSkills().contains("Kubernetes"));
-        System.out.println("anyKubernetes1"+anyKubernetes1); // getskills list - so contains works not equals
+        employees
         
         
-        
-    System.out.println("freq"+ employees.stream().flatMap(e->e.getSkills().stream()).collect(Collectors.groupingBy(Function.identity(),Collectors.counting())).entrySet().stream().max(Entry.comparingByValue()).get());
         
         
         
@@ -206,7 +195,7 @@ public class Java8StreamExamples {
      employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
      employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
      employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.minBy(Comparator.comparingDouble(Employee::getSalary))));
-     employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.minBy(Comparator.comparingDouble(Employee::getSalary))));
+     employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.minBy(Employee::getSalary)));
     // employees.stream().flatMap(e->e.getSkills().stream()).collect(Collectors.toSet());
     // employees.stream().filter(e->e.getSkills().equals("Java")).collect(Collectors.toList());
      employees.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).collect(Collectors.toList());     
@@ -235,10 +224,18 @@ public class Java8StreamExamples {
        // employees.stream().
             
      
+     
+     
+     
+     
+     
 Map<String,Employee>  empsal=   employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.collectingAndThen(Collectors.minBy(Comparator.comparing(Employee::getSalary)), Optional::get)));
      
      System.out.println("empminsal"+empsal);
  //retuns optional     
+     
+     
+     
      
      
      
