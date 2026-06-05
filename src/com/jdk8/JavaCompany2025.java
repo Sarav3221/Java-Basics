@@ -13,10 +13,40 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JavaCompany {
+public class JavaCompany2025 {
 
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		//19-05-2026--------------------
+		
+		//revere a character array  with 0(n) char[] arr = {'h', 'e', 'l', 'l', 'o'};
+		//second highest lenght in a sentence using java 8   String sentence = "Java SpringBoot Microservices Hibernate";
+		
+		char[] arr = {'h', 'e', 'l', 'l', 'o'};
+		
+		int left=0;
+		int right=	arr.length-1;
+		char temp;
+		while(left<right) {
+			
+			 temp=arr[left];
+			 arr[left]=arr[right];
+			 arr[right]=temp;
+			 
+			 left++;
+			 right--;
+			
+		}
+		
+		System.out.println("arr "+Arrays.toString(arr));
+		
+		
+		String sentence = "Java SpringBoot Microservices Hibernate";
+		List<String> sentList= Arrays.asList(sentence.split(" "));
+	Integer secondhighestcount=	sentList.stream().map(e->e.length()).sorted(Comparator.reverseOrder()).skip(1).findFirst().orElse(0);
+ 	System.out.println("secondhighestcount "+secondhighestcount);
+//ctrl+space not working 		
 		
 		List<Integer> l1=Arrays.asList(2,4,7,6,9);
 		
@@ -93,6 +123,8 @@ Map<Character,Long>	frequency=	str.chars().mapToObj(c->(char) c).collect(Collect
 	//duplicate character
 	String strdup="JavaSpring";
 	Set<Character> ch=new HashSet<>();
+	
+	
 	
 	strdup.chars().mapToObj(c->(char) c).map(n->!ch.add(n)).forEach(System.out::print);
 	

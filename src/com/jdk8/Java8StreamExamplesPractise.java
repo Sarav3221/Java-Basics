@@ -188,18 +188,18 @@ public class Java8StreamExamplesPractise {
 */     
      //practise2 - 28.11.2025
      
-     employees.stream().map(Employee::getName).collect(Collectors.toList());
-     employees.stream().filter(e->e.getDepartment().equals("IT")).collect(Collectors.toList());
-     employees.stream().max(Comparator.comparingDouble(Employee::getSalary)).map(Employee::getName).get();
-     employees.stream().mapToDouble(Employee::getSalary).average().orElse(0.0);
-     employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
-     employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
-     employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.minBy(Comparator.comparingDouble(Employee::getSalary))));
-     employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.minBy(Employee::getSalary)));
-    // employees.stream().flatMap(e->e.getSkills().stream()).collect(Collectors.toSet());
-    // employees.stream().filter(e->e.getSkills().equals("Java")).collect(Collectors.toList());
-     employees.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).collect(Collectors.toList());     
-     employees.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).skip(1).findFirst();
+        employees.stream().map(Employee::getName).collect(Collectors.toList());
+        employees.stream().filter(e->e.getDepartment().equals("IT")).collect(Collectors.toList());
+        employees.stream().max(Comparator.comparingDouble(Employee::getSalary)).map(Employee::getName).get();
+        employees.stream().mapToDouble(Employee::getSalary).average().orElse(0.0);
+        employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
+        employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
+        employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.minBy(Comparator.comparingDouble(Employee::getSalary))));
+        employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.minBy(Employee::getSalary)));
+       // employees.stream().flatMap(e->e.getSkills().stream()).collect(Collectors.toSet());
+       // employees.stream().filter(e->e.getSkills().equals("Java")).collect(Collectors.toList());
+        employees.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).collect(Collectors.toList());     
+        employees.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).skip(1).findFirst();
      
      
   

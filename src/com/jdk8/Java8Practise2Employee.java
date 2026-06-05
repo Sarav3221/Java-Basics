@@ -5,17 +5,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import org.omg.CORBA.OMGVMCID;
 
 import com.constant.Employee;
 
-public class Java8Practise3 {
+public class Java8Practise2Employee {
 	
-	//31.8.2025 recal- Not remember 
-	
+	//14.6.2025 recal- Not remember 
 	public static void main(String[] args) {
 		
 		List<Employee> employees = Arrays.asList(
@@ -23,100 +19,66 @@ public class Java8Practise3 {
 			    new Employee(2, "Bob", "IT", 7000, Arrays.asList("Java", "Spring", "AWS")),
 			    new Employee(3, "Charlie", "IT", 8000, Arrays.asList("Java", "Docker")),
 			    new Employee(4, "Diana", "Finance", 6000, Arrays.asList("Excel", "Accounting")),
-			    new Employee(5, "Eve", "IT", 7500, Arrays.asList("Java", "Spring", "Kubernetes")));
+			    new Employee(5, "Eve", "IT", 7000, Arrays.asList("Java", "Spring", "Kubernetes")));
 		
-		//10.9.2025 - 7AM 
-	
-		//How do you fetch the list of all employee names using streams? 
-		/*employees.stream().map(emp->emp.getName()).collect(Collectors.toList()).forEach(e->System.out.println(e));*/
-		
-		//How do you get all employees from the IT department? 
-	
-		/*employees.stream().filter(e->e.getDepartment().equals("IT")).map(emp->emp.getName()).collect(Collectors.toList()).forEach(e->System.out.println(e));*/
-		
-		
-		//How do you find the employee with the maximum salary? 
-		/*employees.stream().max(Comparator.comparingDouble(Employee::getSalary));*/
-		
-		
-		//How do you calculate the average salary of all employees? 
-		
-		///employees.stream().max(Comparator.a(Employee::getSalary));
-		
-		//How do you group employees by department? 
-		//11.9.2025
-		//Map<String,List<Employee>> listemp=
-		/*Map<String,List<Employee>> listemp= employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
-		listemp.forEach((dep,emp)-> {
-		System.out.println(dep+"->"+ emp.stream().map(Employee::getName).collect(Collectors.toList()));	
-		});*/
-		
-		//.toList() — that method was introduced in Java 16.If you’re on Java 8 / 11 (common in Spring Boot projects), .toList() does not exist on streams.You need to use Collectors.toList() instead.
-		 
-	
-		
-		//How do you calculate the average salary per department? 
-		
-		//How do you count the number of employees in each department? 
-		/*Map<String,Long> empcount= employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.counting()));
-		empcount.forEach((dep,emp)-> {
-		System.out.println(dep+"->"+ emp);	
-		});*/
-		
-		//How do you fetch the list of all unique skills across employees? 
-		
-		// wrong employees.stream().map(emp->emp.getSkills()).collect(Collectors.toList()).forEach(e->System.out.println(e));
-		
-		/* employees.stream().flatMap(emp->emp.getSkills().stream()).collect(Collectors.toSet());*/
-		
-		//How do you find all employees who have Java skill? 
-		
-		/*List <String> emplist=employees.stream().filter(e->e.getSkills().contains("Java")).map(emp->emp.getName()).collect(Collectors.toList());
-		emplist.stream().forEach(e->System.out.println(e));*/
-		
-		//Note **Dont Use equals -> use contains 
-		
-		//How do you sort employees by salary in descending order? 
-		
-	/*List<Employee>	emplist2 =employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).collect(Collectors.toList());
-	emplist2.forEach(emp->System.out.println(emp.getName()));*/
-	
-		//How do you find the second highest salary employee? 
-		
-	Employee emp=	employees.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).skip(1).findFirst().get();
-		System.out.println(emp.getName());
-		//How do you partition employees based on salary > 6000 and <= 6000? 
-		//How do you fetch the top 3 highest-paid employees? 
-		//How do you find the employee with the lowest salary in each department? 
-		//How do you check if all employees belong to IT department? 
-		//How do you check if any employee has Kubernetes skill? 
-		//How do you get a comma-separated string of all employee names? 
-		//How do you find the department with the highest average salary? 
-		//How do you get the distinct list of departments? 
-		//How do you map employee names to their list of skills using streams?
-		
-		
-		
-		//******************************************************************//
 		//How would you group employees by department and list the employee names for each department?
+		//{} missed 
+		/*Map<String, List<String>> emplist=	employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.mapping(Employee::getName,Collectors.toList())));
 		
-			
+		
+		emplist.forEach((dep,emp1)->{
+			System.out.println("Department "+ dep);
+			System.out.println(emp1);
+			//emp1.forEach(emp->System.out.println(emp));
+		});*/
+				
 				
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 		//How can you find the highest-paid employee in each department?
+		/*Map<String, Optional<Employee>> empSal= employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.maxBy(Comparator.comparing(Employee::getSalary) )));
+		empSal.forEach((dep,empopt)->{
+			System.out.println("Department"+ dep);
+			empopt.ifPresent(emp-> System.out.println(emp.getName()+ "" +emp.getSalary()));
+		});*/
 		
+		//out1
+		/*DepartmentFinancesalaryOptional[com.constant.Employee@b4c966a]
+				DepartmentHRsalaryOptional[com.constant.Employee@2f4d3709]
+				DepartmentITsalaryOptional[com.constant.Employee@4e50df2e]*/
+
+		//15.6.2025 8AM :9AM 1hour 
+		//How do you extract a unique, sorted list of all skills across all employees?
+		//Not knowing flatmap
+		//You're trying to use flatMap() incorrectly here — it expects a stream to be returned, not a System.out.println() call.
+		//Problem 1: flatMap(...).forEach(...) needs proper closing of method calls.
+		//Problem 2: You're trying to call .forEach(...) inside the flatMap() method — this is incorrect.
+		//You're using .distinct() on the Stream<Employee>, but that won’t remove duplicate skills — it only removes duplicate Employee objects, not skills inside their List<String>.
 		
+		/*List<List<String>> listSkill=employees.stream().distinct().collect(Collectors.mapping(Employee::getSkills, Collectors.toList()));
+		listSkill.stream().flatMap((List::stream)).forEach(System.out::println);
+*/
+		
+	//	employees.stream().flatMap(e->e.getSkills().stream()).distinct().sorted().collect(Collectors.toList()).forEach(System.out::println);;
 
 		//How can you identify the most common skill(s) among all employees based on frequency?
+//Pending
 
 		//How do you calculate the average salary for each department?
+	//	employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.averagingDouble(Employee::getSalary))).forEach((dept,sal)->System.out.println("Depart "+dept+" sal "+sal));
 
 
 		//How would you find employees who possess both “Java” and “Spring” skills?
+		//e.getSkills() returns a List<String>, not a String.
+        //== compares object references, not contents — use .contains(...) for checking elements inside a list.
 		
+		//employees.stream().filter(e->e.getSkills().contains("Java") && e.getSkills().contains("Spring")).map(Employee::getName).forEach(System.out::println);
+//9:30
 		//How can you generate a comma-separated string of employee names who earn more than 6000?
+      System.out.println(employees.stream().filter(emp->emp.getSalary()>6000).map(Employee::getName).collect(Collectors.joining(",")));
 
 		//How would you map each skill to a list of employee names who have that skill?
+      //groupingBy doesn’t accept two arguments this way directly unless wrapped in a downstream collector
+   //   employees.stream().collect(Collectors.groupingBy(Employee::getSkills),Collectors.mapping(Employee::getName, Collectors.toList()));
 
 
 		//How do you determine which department has the highest total salary budget? Explain in detail.

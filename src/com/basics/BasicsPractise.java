@@ -12,6 +12,14 @@ public class BasicsPractise {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		
+		
+		 int[] nums = {10, 20, 30};
+
+	     char[] chars = {'J', 'A', 'V', 'A'};
+
+	     String[] words = {"Java", "SpringBoot", "Microservices"};
+	        
 		int[] arr= {4,3,5,7};
 		
 		String[] strarr= {"sara","veera","mani"};
